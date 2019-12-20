@@ -8,7 +8,7 @@ export class SodaService {
 
   constructor(private http: HttpClient) {}
 
-  public insertAmount(coin: string, amount: number) : Observable<any> {
+  public insertAmount(coin: any, amount: number) : Observable<any> {
     return this.http.get('https://sodamachine-api.herokuapp.com/insertAmount/' + coin + '/' + amount).pipe();
   }
 
