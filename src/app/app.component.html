@@ -1,0 +1,68 @@
+<div class="machine-box-title">
+  <h3>Soda vending machine</h3>
+</div>
+
+<div class="machine-box">
+  <div class="inner">
+    <div class="common">lemon</div>
+    <div class="common">lemon</div>
+    <div class="common">lemon</div>
+    <div class="common">lemon</div>
+    <div class="common">lemon</div>
+    <div class="common">lemon</div>
+    <div class="common">lemon</div>
+    <div class="common">lemon</div>
+
+    <div class="common">ginger</div>
+    <div class="common">ginger</div>
+    <div class="common">ginger</div>
+    <div class="common">ginger</div>
+    <div class="common">ginger</div>
+    <div class="common">ginger</div>
+    <div class="common">ginger</div>
+    <div class="common">ginger</div>
+
+    <div class="common">cherry</div>
+    <div class="common">cherry</div>
+    <div class="common">cherry</div>
+    <div class="common">cherry</div>
+    <div class="common">cherry</div>
+    <div class="common">cherry</div>
+    <div class="common">cherry</div>
+    <div class="common">cherry</div>
+  </div>
+  <div class="inputs">
+    Enter coin value:
+    <select (change)="onCoinSelect($event)">
+      <option *ngFor="let c of coins" [value]="c.id">{{c.name}}</option>
+    </select>
+    <br>
+    How many coins: <input [(ngModel)]="coinAmount"> <br/>
+    <br/>
+    Select the type of soda you want:
+    <select (change)="onChange($event)">
+      <option *ngFor="let v of values" [value]="v.id">{{v.name}}</option>
+    </select>
+  </div>
+  <div class="buttons">
+    <div class="btn-group btn-primary">
+      <button class="btn" (click)="insertAmount()">Add coins</button>
+      <button class="btn" (click)="returnChange()">Get Change</button>
+      <button class="btn" (click)="dispenseSoda()">Dispense Soda</button>
+    </div>
+  </div>
+</div>
+<div class="messages">
+  <p><u class="soda-availability">Sodas Available</u>
+  <br>
+  <span *ngFor="let s of sodasAvailable">
+    <h5>{{s.name}} => {{s.quantity}}</h5>
+  </span>
+  </p>
+<br/>
+  <p *ngIf="loadAmountSuccess">Loaded money successfully</p>
+  <p *ngIf="removeAmountSuccess">Removed money</p>
+  <p *ngIf="dispenseSodaSuccess">Enjoy your soda</p>
+  <p *ngIf="changeAvailable">Please collect your change</p>
+  <p *ngIf="notEnoughMoneyMessage && notEnoughMoneyMessage.length > 0">{{notEnoughMoneyMessage}}</p>
+</div>
